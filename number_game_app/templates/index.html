@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+
+    <style>
+    *{
+        vertical-align: top;
+        box-sizing: border-box;
+    }
+        div.container{
+            margin: 0px auto;
+            text-align: center;
+        }
+            div.wrong{
+                background-color: red;
+                color: white;
+                height: 200px;
+                width: 200px;
+                margin-left: 355px;
+                margin-bottom: 20px;
+                padding: 75px 50px;
+            }
+            div.success{
+                background-color: green;
+                color: white;
+                height: 200px;
+                width: 200px;
+                margin-left: 355px;
+                padding: 75px 50px;
+            }
+            
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess</p>
+        {% if success %}
+            <div class="success">You win! <br> Tries needed {{ turn }}.
+                <p></p>
+                <form action="/" method="POST">
+                    <input type="submit" value="Start new game">
+                </form>
+            </div>
+        {% elif turn > 0 %}
+                <div class="wrong">{{ hint }}</div>
+        {% else %}
+            <div>Welcome to the Game!</div>
+        {% endif %}
+
+        {% if not success %}
+            <form action="/" method="POST">
+                
+                <input type="number" name="guess_number" value="" required><br>
+                <input type="submit" value="Submit">
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
